@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Leaf, Lock, ArrowLeft, CheckCircle, Eye, EyeOff } from 'lucide-react';
-import axios from 'axios';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { authService } from '../../api/service';
 
 const ResetPassword = () => {
     const [searchParams] = useSearchParams();
@@ -62,7 +62,7 @@ const ResetPassword = () => {
 
         setLoading(true);
         try {
-            await axios.post('http://localhost:3000/api/farmer/reset-password', {
+            await authService.resetPassword({
                 email,
                 otp: otpString,
                 newPassword,

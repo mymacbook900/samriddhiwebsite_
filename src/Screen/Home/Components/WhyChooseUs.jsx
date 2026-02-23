@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
 
   return (
     <div className=" bg-gradient-to-br from-gray-50 via-white to-green-50">
-      <div className=" px-10 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
@@ -90,7 +90,7 @@ const WhyChooseUs = () => {
               />
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent"></div>
-              
+
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-green-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -112,7 +112,7 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;

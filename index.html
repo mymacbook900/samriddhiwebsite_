@@ -9,13 +9,22 @@
     <!-- ✅ Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- ✅ Optional: custom theme -->
+    <!-- ✅ Optional: custom theme + animations -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
               clifford: '#da373d',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'scale(0.95) translateY(12px)' },
+                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              },
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.25s ease-out forwards',
             },
           },
         },

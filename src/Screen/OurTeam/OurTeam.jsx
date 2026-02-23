@@ -1,200 +1,3 @@
-// import React from "react";
-// import { Users, Award, Target, TrendingUp } from "lucide-react";
-// import Header from "../Header";
-// import Footer from "../Footer";
-
-// // ===== MANAGER IMAGES (src/assets) =====
-// import torandhakad from "../../assets/toran-dhakad.jpg";
-// import rsrajput from "../../assets/rs-rajput.jpg";
-// import mssolanki from "../../assets/ms-solanki.jpg";
-// import lsmewara from "../../assets/ls-mewara.jpg";
-
-// // ===== SWIPER =====
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Pagination, Autoplay } from "swiper/modules";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-
-// // ===== BASE URL (VITE SAFE) =====
-// const BASE = import.meta.env.BASE_URL;
-
-// // ===== TEAM MANAGERS =====
-// const teamManager = [
-//   {
-//     name: "Mr. T. D. Dhakad",
-//     title: "Regional Sales Manager",
-//     image: torandhakad,
-//   },
-//   {
-//     name: "Mr. R. S. Rajput",
-//     title: "Regional Sales Manager",
-//     image: rsrajput,
-//   },
-//   {
-//     name: "Mr. M. S. Solanki",
-//     title: "Branch Manager",
-//     image: mssolanki,
-//   },
-//   {
-//     name: "Mr. L. S. Mewara",
-//     title: "Branch Manager",
-//     image: lsmewara,
-//   },
-// ];
-
-// // ===== LEADERSHIP TEAM (public/images/team) =====
-// const teamMembers = [
-//   {
-//     name: "Mr. S. S. Sisodiya",
-//     title: "Regional Sales Manager",
-//     image: `${BASE}images/team/ss-sisodiya.jpg`,
-//   },
-//   {
-//     name: "Mr. S. S. Rajput",
-//     title: "Regional Sales Manager",
-//     image: `${BASE}images/team/ss-rajput.jpg`,
-//   },
-//   {
-//     name: "Mr. Rajendra Mandloi",
-//     title: "Branch Manager",
-//     image: `${BASE}images/team/rajendraman.jpg`,
-//   },
-//   {
-//     name: "Mr. Bablu Patel",
-//     title: "Branch Manager",
-//     image: `${BASE}images/team/bablu-patel.jpg`,
-//   },
-//   {
-//     name: "Mr. Praveen Mohe",
-//     title: "Branch Manager",
-//     image: `${BASE}images/team/praveen.jpg`,
-//   },
-//   {
-//     name: "Mr. S. S. Solanki",
-//     title: "Divisional Sales Manager",
-//     image: `${BASE}images/team/rajendra-singh-solanki.jpg`,
-//   },
-//   {
-//     name: "Mr. Surendra Singh",
-//     title: "Branch Manager",
-//     image: `${BASE}images/team/team-1.jpg`,
-//   },
-//   {
-//     name: "Mr. Vishwanath Singh",
-//     title: "Branch Manager",
-//     image: `${BASE}images/team/team-3.jpg`,
-//   },
-// ];
-
-// // ===== STATS =====
-// const stats = [
-//   { icon: Users, label: "Team Members", value: "50+" },
-//   { icon: Award, label: "Years Experience", value: "15+" },
-//   { icon: Target, label: "Projects Done", value: "200+" },
-//   { icon: TrendingUp, label: "Growth Rate", value: "25%" },
-// ];
-
-// const TeamCard = ({ name, title, image }) => {
-//   console.log("IMAGE PATH:", image); 
-
-//   return (
-//     <div className="bg-white rounded-xl p-6 shadow-md text-center">
-//       <div className="w-28 h-28 mx-auto rounded-full overflow-hidden border-4 border-blue-100">
-//         <img
-//           src={image}
-//           alt={name}
-//           className="w-full h-full object-cover"
-//         />
-//       </div>
-//       <h3 className="mt-4 font-bold">{name}</h3>
-//       <p className="text-sm text-gray-500">{title}</p>
-//     </div>
-//   );
-// };
-
-
-// // ===== MAIN PAGE =====
-// export default function OurTeam() {
-//   return (
-//     <>
-//       <Header />
-
-//       {/* HERO */}
-//       <section
-//         className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
-//         style={{
-//           backgroundImage:
-//             "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6')",
-//         }}
-//       >
-//         <div className="absolute inset-0 bg-black/40" />
-//         <div className="relative text-center text-white max-w-2xl px-4">
-//           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-//             Meet Our Team
-//           </h1>
-//           <p className="text-lg">
-//             Passionate leaders and managers driving excellence across regions.Passionate leaders and managers committed to driving excellence across regions.
-// They inspire teams, deliver results, and lead with purpose at every level.
-//           </p>
-//         </div>
-//       </section>
-
-//       {/* STATS */}
-//       <section className="py-12 px-4 max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6">
-//         {stats.map((s, i) => (
-//           <div key={i} className="bg-white p-6 rounded-xl shadow text-center">
-//             <s.icon className="w-8 h-8 mx-auto mb-3 text-blue-600" />
-//             <h3 className="text-3xl font-bold">{s.value}</h3>
-//             <p className="text-sm text-gray-600">{s.label}</p>
-//           </div>
-//         ))}
-//       </section>
-
-//       {/* TEAM MANAGERS */}
-//       <section className="py-14 bg-blue-50">
-//         <div className="max-w-7xl mx-auto px-4">
-//           <h2 className="text-3xl font-bold text-center mb-10">
-//             Our Team Managers
-//           </h2>
-//           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-//             {teamManager.map((m, i) => (
-//               <TeamCard key={i} {...m} />
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* LEADERSHIP SLIDER */}
-//       <section className="py-14 px-4 max-w-7xl mx-auto">
-//         <h2 className="text-3xl font-bold text-center mb-10">
-//           Our Leadership Team
-//         </h2>
-
-//         <Swiper
-//           modules={[Navigation, Pagination, Autoplay]}
-//           spaceBetween={20}
-//           navigation
-//           pagination={{ clickable: true }}
-//           autoplay={{ delay: 3000 }}
-//           breakpoints={{
-//             640: { slidesPerView: 2 },
-//             1024: { slidesPerView: 4 },
-//           }}
-//         >
-//           {teamMembers.map((m, i) => (
-//             <SwiperSlide key={i}>
-//               <TeamCard {...m} />
-//             </SwiperSlide>
-//           ))}
-//         </Swiper>
-//       </section>
-
-//       <Footer />
-//     </>
-//   );
-// }
-
 import React, { useState } from "react";
 import { Users, Award, Target, TrendingUp, Linkedin, Mail, ChevronRight, Leaf } from "lucide-react";
 import Header from "../Header";
@@ -205,6 +8,10 @@ import torandhakad from "../../assets/toran-dhakad.jpg";
 import rsrajput from "../../assets/rs-rajput.jpg";
 import mssolanki from "../../assets/ms-solanki.jpg";
 import lsmewara from "../../assets/ls-mewara.jpg";
+import gsrajput from "../../assets/gsrajput.jpg.jpeg";
+import sssisodia from "../../assets/sssisodia.jpg.jpeg";
+import ssrajput from "../../assets/ssrajput.jpg.jpeg";
+import rssolanki from "../../assets/rssolanki.jpg.jpeg";
 
 // ===== SWIPER =====
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -220,47 +27,67 @@ const BASE = import.meta.env.BASE_URL;
 // ===== TEAM MANAGERS =====
 const teamManager = [
   {
-    name: "Mr. T. D. Dhakad",
-    title: "Regional Sales Manager",
+    name: "Mr. T. S. Dhakad",
+    title: "Founder & CEO",
     image: torandhakad,
-    expertise: "Strategic Planning & Market Development",
+    email: "ts.dhakad@krishidhaan.com",
+    expertise: "Visionary leader with 15+ years in organic agriculture.",
   },
   {
-    name: "Mr. R. S. Rajput",
-    title: "Regional Sales Manager",
-    image: rsrajput,
-    expertise: "Client Relations & Business Growth",
+    name: "Mr. L. S. Mewadali Patel",
+    title: "Chief Marketing Officer",
+    image: lsmewara,
+    email: "ls.patel@krishidhaan.com",
+    expertise: "Marketing strategist strengthening brand presence.",
   },
   {
     name: "Mr. M. S. Solanki",
-    title: "Branch Manager",
+    title: "Head of Research & Development",
     image: mssolanki,
+    email: "ms.solanki@krishidhaan.com",
     expertise: "Operations & Team Leadership",
   },
   {
-    name: "Mr. L. S. Mewara",
-    title: "Branch Manager",
-    image: lsmewara,
-    expertise: "Performance Optimization & Excellence",
+    name: "Mr. R. S. Rajput",
+    title: "Chief Operating Officer",
+    image: rsrajput,
+    email: "rs.rajput@krishidhaan.com",
+    expertise: "Operations expert ensuring quality and efficiency.",
+  },
+  {
+    name: "Mr. G. S. Rajput",
+    title: "Chief Marketing Officer",
+    image: gsrajput,
+    email: "gs.rajput@krishidhaan.com",
+    expertise: "Driving farmer outreach and marketing innovation.",
+  },
+  {
+    name: "Mr. S. S. Sisodiya",
+    title: "Regional Sales Manager",
+    image: sssisodia,
+    email: "ss.sisodiya@krishidhaan.com",
+    expertise: "Driving farmer outreach and marketing innovation.",
+  },
+  {
+    name: "Mr. S. S. Rajput",
+    title: "Regional Sales Manager",
+    image: ssrajput,
+    email: "ss.rajput@krishidhaan.com",
+    expertise: "Driving farmer outreach and marketing innovation.",
   },
 ];
 
 // ===== LEADERSHIP TEAM (public/images/team) =====
 const teamMembers = [
   {
-    name: "Mr. S. S. Sisodiya",
-    title: "Regional Sales Manager",
-    image: `${BASE}images/team/ss-sisodiya.jpg`,
+    name: "Mr. R. S. Solanki",
+    title: "Divisional Sales Manager",
+    image: rssolanki,
   },
   {
-    name: "Mr. S. S. Rajput",
-    title: "Regional Sales Manager",
-    image: `${BASE}images/team/ss-rajput.jpg`,
-  },
-  {
-    name: "Mr. Rajendra Mandloi",
+    name: "Mr. Vishwanath Singh",
     title: "Branch Manager",
-    image: `${BASE}images/team/rajendraman.jpg`,
+    image: `${BASE}images/team/team-3.jpg`,
   },
   {
     name: "Mr. Bablu Patel",
@@ -268,24 +95,24 @@ const teamMembers = [
     image: `${BASE}images/team/bablu-patel.jpg`,
   },
   {
+    name: "Mr. Rajendra Mandloi",
+    title: "Branch Manager",
+    image: `${BASE}images/team/rajendraman.jpg`,
+  },
+  {
     name: "Mr. Praveen Mohe",
     title: "Branch Manager",
     image: `${BASE}images/team/praveen.jpg`,
   },
   {
-    name: "Mr. S. S. Solanki",
-    title: "Divisional Sales Manager",
-    image: `${BASE}images/team/rajendra-singh-solanki.jpg`,
+    name: "Ms. Sonia",
+    title: "Garden Maker",
+    image: `${BASE}images/sonia.jpg`,
   },
   {
-    name: "Mr. Surendra Singh",
-    title: "Branch Manager",
-    image: `${BASE}images/team/team-1.jpg`,
-  },
-  {
-    name: "Mr. Vishwanath Singh",
-    title: "Branch Manager",
-    image: `${BASE}images/team/team-3.jpg`,
+    name: "Ms. Priyanka Jain",
+    title: "Receptionist",
+    image: `${BASE}images/prianka.jpg`,
   },
 ];
 
@@ -298,7 +125,7 @@ const stats = [
 ];
 
 // ===== PREMIUM TEAM CARD (AGRICULTURE GREEN) =====
-const PremiumTeamCard = ({ name, title, image, expertise }) => {
+const PremiumTeamCard = ({ name, title, image, expertise, email }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -309,18 +136,21 @@ const PremiumTeamCard = ({ name, title, image, expertise }) => {
     >
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-600/0 to-emerald-600/0 group-hover:from-green-600/10 group-hover:to-emerald-600/10 transition-all duration-500 z-10" />
-      
+
       {/* Leaf Pattern Background */}
       <div className="absolute top-0 right-0 opacity-5">
         <Leaf size={80} className="text-green-600" />
       </div>
-      
+
       {/* Content */}
       <div className="relative z-20 p-6">
         {/* Image Container with Ring Animation */}
         <div className="relative w-32 h-32 mx-auto mb-6">
           <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse opacity-20" />
-          <div className={`absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full transition-transform duration-500 ${isHovered ? 'scale-110' : 'scale-100'}`} style={{ padding: '3px' }}>
+          <div
+            className={`absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full transition-transform duration-500 ${isHovered ? "scale-110" : "scale-100"}`}
+            style={{ padding: "3px" }}
+          >
             <div className="w-full h-full rounded-full overflow-hidden bg-white p-1">
               <img
                 src={image}
@@ -340,20 +170,25 @@ const PremiumTeamCard = ({ name, title, image, expertise }) => {
             {title}
           </p>
           {expertise && (
-            <p className="text-xs text-gray-600 leading-relaxed px-2">
-              {expertise}
-            </p>
+            <p className="text-xs text-gray-600 leading-relaxed px-2">{expertise}</p>
           )}
         </div>
 
         {/* Social Icons (appear on hover) */}
-        <div className={`flex justify-center gap-3 mt-5 transition-all duration-500 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div
+          className={`flex justify-center gap-3 mt-5 transition-all duration-500 ${
+            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
           <button className="p-2 bg-green-100 hover:bg-green-600 text-green-600 hover:text-white rounded-full transition-all duration-300">
             <Linkedin size={16} />
           </button>
-          <button className="p-2 bg-green-100 hover:bg-green-600 text-green-600 hover:text-white rounded-full transition-all duration-300">
+          <a
+            href={`mailto:${email}`}
+            className="p-2 bg-green-100 hover:bg-green-600 text-green-600 hover:text-white rounded-full transition-all duration-300"
+          >
             <Mail size={16} />
-          </button>
+          </a>
         </div>
       </div>
 
@@ -387,19 +222,21 @@ const StatCard = ({ icon: Icon, label, value, color }) => {
   return (
     <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-green-100 hover:border-green-300">
       {/* Animated Background Gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-      
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+      />
+
       {/* Content */}
       <div className="relative z-10 text-center">
-        <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${color} p-3 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
+        <div
+          className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${color} p-3 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}
+        >
           <Icon className="w-full h-full text-white" />
         </div>
         <h3 className="text-4xl font-bold bg-gradient-to-br bg-clip-text text-transparent from-green-700 to-emerald-600 mb-2">
           {value}
         </h3>
-        <p className="text-sm text-gray-600 font-medium uppercase tracking-wide">
-          {label}
-        </p>
+        <p className="text-sm text-gray-600 font-medium uppercase tracking-wide">{label}</p>
       </div>
 
       {/* Decorative Elements */}
@@ -415,20 +252,18 @@ export default function OurTeam() {
     <>
       <Header />
 
-      {/* HERO SECTION - AGRICULTURE GREEN THEME */}
+      {/* HERO SECTION */}
       <section className="relative h-screen overflow-hidden">
-        {/* Animated Background - Agricultural Field */}
         <div
           className="absolute inset-0 bg-cover bg-center transform scale-105 animate-slow-zoom"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070')",
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070')",
           }}
         />
-        
-        {/* Green Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/70 via-emerald-800/60 to-green-900/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        
+
         {/* Animated Leaf Particles */}
         <div className="absolute inset-0 opacity-20">
           {[...Array(15)].map((_, i) => (
@@ -446,7 +281,6 @@ export default function OurTeam() {
           ))}
         </div>
 
-        {/* Content */}
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl animate-fade-in">
             <div className="inline-block mb-6 px-6 py-2 bg-green-600/30 backdrop-blur-md rounded-full border-2 border-green-400/50">
@@ -455,39 +289,33 @@ export default function OurTeam() {
                 Growing Agriculture Together
               </p>
             </div>
-            
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Meet Our <span className="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">Agricultural</span> Team
+              Meet Our{" "}
+              <span className="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+                Agricultural
+              </span>{" "}
+              Team
             </h1>
-            
             <p className="text-lg md:text-xl text-green-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-           Passionate leaders and managers committed to driving agricultural excellence across regions.
-They inspire high-performing teams and lead with integrity and vision.
-Through innovation, collaboration, and accountability, they deliver measurable results.
-Their leadership cultivates sustainable growth and long-term value at every level.
+              Passionate leaders and managers committed to driving agricultural excellence across
+              regions. They inspire high-performing teams and lead with integrity and vision.
+              Through innovation, collaboration, and accountability, they deliver measurable
+              results. Their leadership cultivates sustainable growth and long-term value at every
+              level.
             </p>
-
             <button className="group px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 rounded-full font-semibold text-lg shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105">
               Explore Our Team
-              <ChevronRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              <ChevronRight
+                className="inline-block ml-2 group-hover:translate-x-1 transition-transform"
+                size={20}
+              />
             </button>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-green-300/70 rounded-full p-1">
-            <div className="w-1.5 h-3 bg-green-300 rounded-full mx-auto animate-scroll" />
-          </div>
-        </div> */}
       </section>
 
-      {/* STATS SECTION - GREEN THEME */}
-      
-
-      {/* TEAM MANAGERS SECTION - GREEN THEME */}
+      {/* TEAM MANAGERS SECTION */}
       <section className="py-20 bg-white relative overflow-hidden">
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-10 left-10">
             <Leaf size={100} className="text-green-600" />
@@ -500,13 +328,19 @@ Their leadership cultivates sustainable growth and long-term value at every leve
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 px-6 py-2 bg-green-100 rounded-full border-2 border-green-300">
-              <p className="text-sm font-semibold text-green-700 uppercase tracking-wider">Leadership</p>
+              <p className="text-sm font-semibold text-green-700 uppercase tracking-wider">
+                Leadership
+              </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              Our Team <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Managers</span>
+              Our Team{" "}
+              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                Managers
+              </span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Meet the visionary leaders who cultivate our success and inspire agricultural excellence across all regions
+              Meet the visionary leaders who cultivate our success and inspire agricultural
+              excellence across all regions
             </p>
           </div>
 
@@ -520,15 +354,20 @@ Their leadership cultivates sustainable growth and long-term value at every leve
         </div>
       </section>
 
-      {/* LEADERSHIP SLIDER - GREEN THEME */}
+      {/* LEADERSHIP SLIDER */}
       <section className="py-20 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full border-2 border-emerald-300">
-              <p className="text-sm font-semibold text-emerald-700 uppercase tracking-wider">Extended Team</p>
+              <p className="text-sm font-semibold text-emerald-700 uppercase tracking-wider">
+                Extended Team
+              </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              Our Leadership <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Team</span>
+              Our Leadership{" "}
+              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                Team
+              </span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Dedicated professionals committed to agricultural excellence and innovation
@@ -566,8 +405,8 @@ Their leadership cultivates sustainable growth and long-term value at every leve
         </div>
       </section>
 
-
-<section className="py-20 px-4 bg-gradient-to-br from-green-50 via-emerald-50 to-green-50">
+      {/* STATS SECTION */}
+      <section className="py-20 px-4 bg-gradient-to-br from-green-50 via-emerald-50 to-green-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 px-6 py-2 bg-green-100 rounded-full border-2 border-green-300">
@@ -577,11 +416,16 @@ Their leadership cultivates sustainable growth and long-term value at every leve
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              Agricultural Excellence in <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Numbers</span>
+              Agricultural Excellence in{" "}
+              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                Numbers
+              </span>
             </h2>
-            <p className="text-gray-600 text-lg">Cultivating success through dedication and innovation</p>
+            <p className="text-gray-600 text-lg">
+              Cultivating success through dedication and innovation
+            </p>
           </div>
-          
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((s, i) => (
               <StatCard key={i} {...s} />
@@ -589,9 +433,9 @@ Their leadership cultivates sustainable growth and long-term value at every leve
           </div>
         </div>
       </section>
-      {/* CTA SECTION - GREEN THEME */}
+
+      {/* CTA SECTION */}
       <section className="py-20 bg-gradient-to-br from-green-700 via-emerald-600 to-green-700 text-white relative overflow-hidden">
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           {[...Array(10)].map((_, i) => (
             <Leaf
@@ -614,21 +458,20 @@ Their leadership cultivates sustainable growth and long-term value at every leve
               Join Our Mission
             </p>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Grow Your Career with Us
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Grow Your Career with Us</h2>
           <p className="text-xl text-green-100 mb-8">
-            Be part of something extraordinary. We're cultivating the future of agriculture and looking for passionate individuals to join our mission.
+            Be part of something extraordinary. We're cultivating the future of agriculture and
+            looking for passionate individuals to join our mission.
           </p>
-          <button className="px-8 py-4 bg-white text-green-700 rounded-full font-semibold text-lg shadow-2xl hover:shadow-white/50 transition-all duration-300 transform hover:scale-105 hover:bg-green-50">
+          {/* <button className="px-8 py-4 bg-white text-green-700 rounded-full font-semibold text-lg shadow-2xl hover:shadow-white/50 transition-all duration-300 transform hover:scale-105 hover:bg-green-50">
             View Open Positions
-          </button>
+          </button> */}
         </div>
       </section>
 
       <Footer />
 
-      <style jsx>{`
+      <style>{`
         @keyframes slow-zoom {
           0%, 100% { transform: scale(1.05); }
           50% { transform: scale(1.1); }

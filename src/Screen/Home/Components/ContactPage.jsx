@@ -9,6 +9,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import { contactService } from "../../../api/service"; 
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export default function ContactPage() {
     email: "",
     subject: "",
     message: "",
+    mobileNumber:"",
   });
   const [loading, setLoading] = useState(false);
 
@@ -23,19 +25,27 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      alert("Please fill all fields");
-      return;
-    }
+ const handleSubmit = async () => {
+  if (!formData.name || !formData.email || !formData.subject || !formData.message || !formData.mobileNumber) {
+    alert("Please fill all fields");
+    return;
+  }
 
+  try {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+
+    const res = await contactService.contact(formData);
+
+    if (res.status === 201) {
       alert("Message sent successfully!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
-  };
+      setFormData({ name: "", email: "", subject: "", message: "" ,mobileNumber:""});
+    }
+  } catch (error) {
+    alert(error.response?.data?.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen pt-20 md:pt-10">
@@ -92,6 +102,15 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Subject"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 outline-none"
+                />
+
+                <input
+                  type="text"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                  placeholder="mobileNumber"
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 outline-none"
                 />
 

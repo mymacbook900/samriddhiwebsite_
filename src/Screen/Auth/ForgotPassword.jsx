@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Leaf, Mail, ArrowLeft, CheckCircle } from 'lucide-react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { authService } from '../../api/service';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const ForgotPassword = () => {
         setLoading(true);
         setError(null);
         try {
-            await axios.post('http://localhost:3000/api/farmer/forgot-password', { email });
+            await authService.forgotPassword({ email });
             setSent(true);
         } catch (err) {
             setError(err.response?.data?.message || 'Something went wrong. Please check your email and try again.');

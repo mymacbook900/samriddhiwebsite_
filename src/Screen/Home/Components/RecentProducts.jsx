@@ -3,7 +3,7 @@ import { Award, Target, Users, TrendingUp, Leaf, Sprout, Shield, ChevronRight, P
 import { useNavigate } from 'react-router-dom';
 
 export default function AgricultureHomePage() {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [activeVideo, setActiveVideo] = useState('hero');
 
   const products = [
@@ -27,8 +27,8 @@ export default function AgricultureHomePage() {
   return (
     <div className="bg-gray-50">
       {/* Products Section */}
-      <section className="py-4 bg-gradient-to-b from-gray-50 to-white">
-        <div className="px-10">
+      <section className="py-12 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Our <span className="text-green-600">Products</span>
@@ -53,7 +53,7 @@ export default function AgricultureHomePage() {
                 <p className="text-gray-600 mb-6">
                   {product.desc}
                 </p>
-                <button onClick={()=>navigate("/products")} className="flex items-center text-green-600 font-semibold group-hover:gap-2 transition-all">
+                <button onClick={() => navigate("/products")} className="flex items-center text-green-600 font-semibold group-hover:gap-2 transition-all">
                   Learn More <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
@@ -62,8 +62,8 @@ export default function AgricultureHomePage() {
         </div>
       </section>
 
-    
-      <style jsx>{`
+
+      <style>{`
         @keyframes slideUp {
           from {
             opacity: 0;

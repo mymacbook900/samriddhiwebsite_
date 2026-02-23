@@ -208,13 +208,13 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full bg-green-600 shadow-md z-50 transition-all duration-300">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Leaf className="text-green-300" size={28} />
-            <h3 className="text-xl font-bold text-white">Demonstration</h3>
-          </div>
+          <Link to="/" className="flex items-center gap-2">
+            <Leaf className="text-green-300" size={24} />
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">Demonstration</h3>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">

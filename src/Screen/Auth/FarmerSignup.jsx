@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Leaf, User, Phone, Mail, Lock, MapPin, Sprout, Landmark } from 'lucide-react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { authService } from '../../api/service';
 
 const FarmerSignup = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
     const [formData, setFormData] = useState({
         farmerName: '',
         farmerFatherName: '',
@@ -59,14 +60,15 @@ const FarmerSignup = () => {
                 crops: formData.crops.split(',').map(crop => crop.trim()).filter(crop => crop !== '')
             };
 
-            const response = await axios.post('http://localhost:3000/api/farmer/signup', formattedData);
+            const response = await authService.signup(formattedData);
 
             if (response.data.success) {
                 localStorage.setItem('farmerToken', response.data.token);
                 localStorage.setItem('farmerData', JSON.stringify(response.data.data));
                 localStorage.setItem('isFarmerRegistered', 'true'); // Mark as registered
+                setSuccess('Account created successfully! Welcome to the community.');
                 window.dispatchEvent(new Event('storage'));
-                navigate('/products');
+                setTimeout(() => navigate('/products'), 2000);
             }
         } catch (err) {
             console.error('Signup error:', err);
@@ -121,8 +123,14 @@ const FarmerSignup = () => {
                             </div>
 
                             {error && (
-                                <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm rounded">
+                                <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm rounded animate-shake">
                                     {error}
+                                </div>
+                            )}
+
+                            {success && (
+                                <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 text-sm rounded animate-bounce">
+                                    {success}
                                 </div>
                             )}
 

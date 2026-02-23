@@ -11,9 +11,8 @@ const ServiceCard = ({ icon: Icon, title, description, index, isLeft }) => {
 
   return (
     <div
-      className={`transform transition-all duration-700 ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-      }`}
+      className={`transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}
     >
       <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
         <div className={`flex items-start gap-4 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}>
@@ -103,9 +102,9 @@ const ServicesOffer = () => {
       </div>
 
       {/* Main Content */}
-      <div className=" px-10 pb-16 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 pb-16 ">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
-          
+
           {/* Left Column */}
           <div className="space-y-6">
             {services.filter((_, i) => i % 3 === 0).map((service, idx) => (
@@ -115,7 +114,7 @@ const ServicesOffer = () => {
 
           {/* Center Column - Plant Image */}
           <div className="hidden lg:flex justify-center items-center">
-            <div 
+            <div
               className="relative"
               style={{
                 transform: `scale(${plantScale})`,
@@ -123,9 +122,9 @@ const ServicesOffer = () => {
               }}
             >
               <div className="absolute inset-0 bg-green-400 opacity-20 blur-3xl rounded-full"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&h=600&fit=crop" 
-                alt="Growing plant" 
+              <img
+                src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&h=600&fit=crop"
+                alt="Growing plant"
                 className="relative w-64 h-96 object-cover rounded-3xl shadow-2xl"
               />
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-green-500 rounded-full opacity-30 animate-ping"></div>
@@ -151,9 +150,9 @@ const ServicesOffer = () => {
         <div className="lg:hidden mt-12 flex justify-center">
           <div className="relative">
             <div className="absolute inset-0 bg-green-400 opacity-20 blur-3xl rounded-full"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&h=600&fit=crop" 
-              alt="Growing plant" 
+            <img
+              src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&h=600&fit=crop"
+              alt="Growing plant"
               className="relative w-48 h-72 object-cover rounded-3xl shadow-2xl"
             />
           </div>

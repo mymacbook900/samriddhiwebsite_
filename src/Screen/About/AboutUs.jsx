@@ -59,7 +59,7 @@
 //       {/* Content */}
 //       <div className="relative z-10 min-h-screen flex items-center">
 //         <div className="container mx-auto px-4 py-20">
-          
+
 //           {/* Hero Content */}
 //           <div className="max-w-4xl mx-auto text-center mb-16 animate-fade-in">
 //             <div className="inline-block mb-6">
@@ -151,7 +151,7 @@
 //         </div>
 //       </div>
 // <Footer/>
-//       <style jsx>{`
+//       <style>{`
 //         @keyframes slideUp {
 //           from {
 //             opacity: 0;
@@ -229,14 +229,14 @@ const About = () => {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-        
+
         // Draw wheat grain shape
         const scale = 0.5 + (this.depth * 0.5);
         ctx.fillStyle = `rgba(245, 158, 11, ${this.opacity * scale})`;
         ctx.beginPath();
         ctx.ellipse(0, 0, this.size * scale, this.size * 2 * scale, 0, 0, Math.PI * 2);
         ctx.fill();
-        
+
         ctx.restore();
       }
     }
@@ -277,7 +277,7 @@ const About = () => {
     let animationId;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       drops.forEach(drop => {
         drop.update();
         drop.draw();
@@ -309,16 +309,16 @@ const About = () => {
   return (
     <>
       <Header />
-      
+
       {/* ===== HERO SECTION WITH 3D AGRICULTURE ANIMATION ===== */}
       <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-green-50 via-emerald-100 to-green-200">
         {/* Animated Canvas Background */}
-        <canvas 
+        <canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full"
           style={{ mixBlendMode: 'multiply' }}
         />
-        
+
         {/* 3D Rotating Sun */}
         <div className="absolute top-20 right-20 w-32 h-32 animate-rotate-slow">
           <div className="relative w-full h-full">
@@ -341,7 +341,7 @@ const About = () => {
         {/* Floating Tractor Icon */}
         <div className="absolute bottom-32 left-10 animate-bounce-slow opacity-80">
           <svg className="w-24 h-24 text-green-700" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M5 15c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm14-3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zM7.82 6L5 12v4h3.5c.5-1.16 1.6-2 2.95-2s2.45.84 2.95 2H18v-4.68L15.5 6h-7.68zM19 13l-2.5-5.5c-.27-.55-.81-.88-1.42-.88H8.08c-.61 0-1.15.33-1.42.88L4 13v7c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h10v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-7z"/>
+            <path d="M5 15c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm14-3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zM7.82 6L5 12v4h3.5c.5-1.16 1.6-2 2.95-2s2.45.84 2.95 2H18v-4.68L15.5 6h-7.68zM19 13l-2.5-5.5c-.27-.55-.81-.88-1.42-.88H8.08c-.61 0-1.15.33-1.42.88L4 13v7c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h10v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-7z" />
           </svg>
         </div>
 
@@ -357,13 +357,13 @@ const About = () => {
               }}
             >
               <svg className="w-12 h-32 text-green-600/40" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 22c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1s-1 .45-1 1v8c0 .55.45 1 1 1zm-2-8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-2zm-4-3c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-2zm8 0c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-2zM12 2L7 7c0 2.21 1.79 4 4 4v2c0-2.21 1.79-4 4-4l-5-5z"/>
+                <path d="M12 22c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1s-1 .45-1 1v8c0 .55.45 1 1 1zm-2-8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-2zm-4-3c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-2zm8 0c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-2zM12 2L7 7c0 2.21 1.79 4 4 4v2c0-2.21 1.79-4 4-4l-5-5z" />
               </svg>
             </div>
           ))}
         </div>
 
-       
+
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(12)].map((_, i) => (
             <div
@@ -382,20 +382,20 @@ const About = () => {
         </div>
 
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 left-20 w-96 h-48 bg-white/30 rounded-full blur-3xl animate-drift-cloud" 
-               style={{ animationDelay: '0s' }} />
-          <div className="absolute top-32 right-10 w-80 h-40 bg-white/20 rounded-full blur-3xl animate-drift-cloud" 
-               style={{ animationDelay: '3s' }} />
-          <div className="absolute top-64 left-1/2 w-72 h-36 bg-white/25 rounded-full blur-3xl animate-drift-cloud" 
-               style={{ animationDelay: '6s' }} />
+          <div className="absolute top-10 left-20 w-96 h-48 bg-white/30 rounded-full blur-3xl animate-drift-cloud"
+            style={{ animationDelay: '0s' }} />
+          <div className="absolute top-32 right-10 w-80 h-40 bg-white/20 rounded-full blur-3xl animate-drift-cloud"
+            style={{ animationDelay: '3s' }} />
+          <div className="absolute top-64 left-1/2 w-72 h-36 bg-white/25 rounded-full blur-3xl animate-drift-cloud"
+            style={{ animationDelay: '6s' }} />
         </div>
 
-        
+
         <div className="relative z-10 container mx-auto px-4 py-24 flex flex-col items-center justify-center min-h-screen text-center">
           <div className="mb-8 animate-slide-down">
             <div className="inline-block p-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg mb-6">
               <svg className="w-16 h-16 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.84L18 12v6h-4v-4h-4v4H6v-6l6-6.16z"/>
+                <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.84L18 12v6h-4v-4h-4v4H6v-6l6-6.16z" />
               </svg>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-green-800 mb-4 drop-shadow-lg">
@@ -404,7 +404,7 @@ const About = () => {
           </div>
 
           <p className="text-lg md:text-xl text-green-700 max-w-3xl mb-10 leading-relaxed animate-slide-up backdrop-blur-sm bg-white/50 p-6 rounded-2xl shadow-xl">
-            Passionate leaders and managers committed to driving agricultural excellence across regions. 
+            Passionate leaders and managers committed to driving agricultural excellence across regions.
             We work closely with farmers to cultivate growth, trust, and sustainable success.
           </p>
 
@@ -431,13 +431,13 @@ const About = () => {
             onClick={() => setOpenModal(false)}
             className="absolute inset-0 bg-black/60 backdrop-blur-md animate-fade-in"
           />
-          
+
           {/* Modal */}
           <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-8 animate-scale-in overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-200 rounded-full blur-3xl opacity-50" />
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-200 rounded-full blur-3xl opacity-50" />
-            
+
             {/* Close Button */}
             <button
               onClick={() => setOpenModal(false)}
@@ -458,15 +458,15 @@ const About = () => {
 
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  We are an agriculture-focused organization dedicated to empowering farmers with innovative 
+                  We are an agriculture-focused organization dedicated to empowering farmers with innovative
                   solutions, high-quality products, and expert guidance across every stage of cultivation.
                 </p>
                 <p>
-                  Our experienced leadership team bridges modern agricultural science with practical field 
+                  Our experienced leadership team bridges modern agricultural science with practical field
                   knowledge to improve productivity and long-term sustainability.
                 </p>
                 <p className="text-green-700 font-semibold">
-                  Agriculture is more than a business for us — it is a responsibility toward farmers, 
+                  Agriculture is more than a business for us — it is a responsibility toward farmers,
                   communities, and future generations.
                 </p>
               </div>
