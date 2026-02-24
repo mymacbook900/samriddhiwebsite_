@@ -12,6 +12,7 @@ import ResetPassword from "./Screen/Auth/ResetPassword";
 import ProtectedRoute from "./Screen/Auth/ProtectedRoute";
 import Cart from "./Screen/Cart/Cart";
 import Orders from "./Screen/Orders/Orders";
+import Journy from "./Screen/Journey/journy"
 import WhatsAppFloat from "./Screen/Home/Components/WhatsAppFloat";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/ourTeam" element={<OurTeam />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<OurProducts />} />
+        <Route path="/journy" element={<Journy/>}/>
         <Route path="/farmer/signup" element={<FarmerSignup />} />
         <Route path="/farmer/login" element={<FarmerLogin />} />
         <Route path="/farmer/forgot-password" element={<ForgotPassword />} />

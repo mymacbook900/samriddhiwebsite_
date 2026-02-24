@@ -1,17 +1,8 @@
-import React, { useState } from "react";
-import { Users, Award, Target, TrendingUp, Linkedin, Mail, ChevronRight, Leaf } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Users, Award, Target, TrendingUp, Linkedin, Mail, ChevronRight, Leaf, Loader2 } from "lucide-react";
 import Header from "../Header";
 import Footer from "../Footer";
-
-// ===== MANAGER IMAGES (src/assets) =====
-import torandhakad from "../../assets/toran-dhakad.jpg";
-import rsrajput from "../../assets/rs-rajput.jpg";
-import mssolanki from "../../assets/ms-solanki.jpg";
-import lsmewara from "../../assets/ls-mewara.jpg";
-import gsrajput from "../../assets/gsrajput.jpg.jpeg";
-import sssisodia from "../../assets/sssisodia.jpg.jpeg";
-import ssrajput from "../../assets/ssrajput.jpg.jpeg";
-import rssolanki from "../../assets/rssolanki.jpg.jpeg";
+import { OurteamService } from "../../api/service";
 
 // ===== SWIPER =====
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,100 +12,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 
-// ===== BASE URL (VITE SAFE) =====
-const BASE = import.meta.env.BASE_URL;
-
-// ===== TEAM MANAGERS =====
-const teamManager = [
-  {
-    name: "Mr. T. S. Dhakad",
-    title: "Founder & CEO",
-    image: torandhakad,
-    email: "ts.dhakad@krishidhaan.com",
-    expertise: "Visionary leader with 15+ years in organic agriculture.",
-  },
-  {
-    name: "Mr. L. S. Mewadali Patel",
-    title: "Chief Marketing Officer",
-    image: lsmewara,
-    email: "ls.patel@krishidhaan.com",
-    expertise: "Marketing strategist strengthening brand presence.",
-  },
-  {
-    name: "Mr. M. S. Solanki",
-    title: "Head of Research & Development",
-    image: mssolanki,
-    email: "ms.solanki@krishidhaan.com",
-    expertise: "Operations & Team Leadership",
-  },
-  {
-    name: "Mr. R. S. Rajput",
-    title: "Chief Operating Officer",
-    image: rsrajput,
-    email: "rs.rajput@krishidhaan.com",
-    expertise: "Operations expert ensuring quality and efficiency.",
-  },
-  {
-    name: "Mr. G. S. Rajput",
-    title: "Chief Marketing Officer",
-    image: gsrajput,
-    email: "gs.rajput@krishidhaan.com",
-    expertise: "Driving farmer outreach and marketing innovation.",
-  },
-  {
-    name: "Mr. S. S. Sisodiya",
-    title: "Regional Sales Manager",
-    image: sssisodia,
-    email: "ss.sisodiya@krishidhaan.com",
-    expertise: "Driving farmer outreach and marketing innovation.",
-  },
-  {
-    name: "Mr. S. S. Rajput",
-    title: "Regional Sales Manager",
-    image: ssrajput,
-    email: "ss.rajput@krishidhaan.com",
-    expertise: "Driving farmer outreach and marketing innovation.",
-  },
-];
-
-// ===== LEADERSHIP TEAM (public/images/team) =====
-const teamMembers = [
-  {
-    name: "Mr. R. S. Solanki",
-    title: "Divisional Sales Manager",
-    image: rssolanki,
-  },
-  {
-    name: "Mr. Vishwanath Singh",
-    title: "Branch Manager",
-    image: `${BASE}images/team/team-3.jpg`,
-  },
-  {
-    name: "Mr. Bablu Patel",
-    title: "Branch Manager",
-    image: `${BASE}images/team/bablu-patel.jpg`,
-  },
-  {
-    name: "Mr. Rajendra Mandloi",
-    title: "Branch Manager",
-    image: `${BASE}images/team/rajendraman.jpg`,
-  },
-  {
-    name: "Mr. Praveen Mohe",
-    title: "Branch Manager",
-    image: `${BASE}images/team/praveen.jpg`,
-  },
-  {
-    name: "Ms. Sonia",
-    title: "Garden Maker",
-    image: `${BASE}images/sonia.jpg`,
-  },
-  {
-    name: "Ms. Priyanka Jain",
-    title: "Receptionist",
-    image: `${BASE}images/prianka.jpg`,
-  },
-];
+// ===== API BASE URL =====
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 // ===== STATS (AGRICULTURE THEMED) =====
 const stats = [
@@ -125,7 +24,7 @@ const stats = [
 ];
 
 // ===== PREMIUM TEAM CARD (AGRICULTURE GREEN) =====
-const PremiumTeamCard = ({ name, title, image, expertise, email }) => {
+const PremiumTeamCard = ({ name, title, image, expertise, email, linkedIn }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -180,9 +79,14 @@ const PremiumTeamCard = ({ name, title, image, expertise, email }) => {
             isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <button className="p-2 bg-green-100 hover:bg-green-600 text-green-600 hover:text-white rounded-full transition-all duration-300">
+          <a
+            href={linkedIn || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-green-100 hover:bg-green-600 text-green-600 hover:text-white rounded-full transition-all duration-300"
+          >
             <Linkedin size={16} />
-          </button>
+          </a>
           <a
             href={`mailto:${email}`}
             className="p-2 bg-green-100 hover:bg-green-600 text-green-600 hover:text-white rounded-full transition-all duration-300"
@@ -246,8 +150,63 @@ const StatCard = ({ icon: Icon, label, value, color }) => {
   );
 };
 
+// ===== LOADING SPINNER =====
+const LoadingSpinner = () => (
+  <div className="flex flex-col items-center justify-center py-20 gap-3">
+    <Loader2 className="w-10 h-10 text-green-600 animate-spin" />
+    <p className="text-green-700 font-medium text-sm">Loading...</p>
+  </div>
+);
+
 // ===== MAIN PAGE =====
 export default function OurTeam() {
+  const [teamManagers, setTeamManagers] = useState([]);
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [loadingManagers, setLoadingManagers] = useState(true);
+  const [loadingMembers, setLoadingMembers] = useState(true);
+  const [errorManagers, setErrorManagers] = useState(null);
+  const [errorMembers, setErrorMembers] = useState(null);
+
+ // ===== FETCH MANAGERS =====
+useEffect(() => {
+  const fetchManagers = async () => {
+    try {
+      setLoadingManagers(true);
+      const res = await OurteamService.getAllManagers();
+      if (res.data.success) {
+        setTeamManagers(res.data.data);
+      } else {
+        setErrorManagers("Failed to load managers.");
+      }
+    } catch (err) {
+      setErrorManagers("Network error. Please try again.");
+    } finally {
+      setLoadingManagers(false);
+    }
+  };
+  fetchManagers();
+}, []);
+
+// ===== FETCH MEMBERS =====
+useEffect(() => {
+  const fetchMembers = async () => {
+    try {
+      setLoadingMembers(true);
+      const res = await OurteamService.getAllMembers();
+      if (res.data.success) {
+        setTeamMembers(res.data.data);
+      } else {
+        setErrorMembers("Failed to load team members.");
+      }
+    } catch (err) {
+      setErrorMembers("Network error. Please try again.");
+    } finally {
+      setLoadingMembers(false);
+    }
+  };
+  fetchMembers();
+}, []);
+
   return (
     <>
       <Header />
@@ -344,13 +303,28 @@ export default function OurTeam() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamManager.map((m, i) => (
-              <div key={i} className="animate-fade-in" style={{ animationDelay: `${i * 0.1}s` }}>
-                <PremiumTeamCard {...m} />
-              </div>
-            ))}
-          </div>
+          {loadingManagers ? (
+            <LoadingSpinner />
+          ) : errorManagers ? (
+            <div className="text-center py-10 text-red-500 font-medium">{errorManagers}</div>
+          ) : teamManagers.length === 0 ? (
+            <div className="text-center py-10 text-gray-400">No managers found.</div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {teamManagers.map((m, i) => (
+                <div key={m._id} className="animate-fade-in" style={{ animationDelay: `${i * 0.1}s` }}>
+                  <PremiumTeamCard
+                    name={m.name}
+                    title={m.title}
+                    image={m.image}
+                    expertise={m.expertise}
+                    email={m.email}
+                    linkedIn={m.linkedIn}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -374,34 +348,46 @@ export default function OurTeam() {
             </p>
           </div>
 
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView="auto"
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            navigation
-            pagination={{ clickable: true, dynamicBullets: true }}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 4 },
-            }}
-            className="pb-16"
-          >
-            {teamMembers.map((m, i) => (
-              <SwiperSlide key={i} className="!w-72">
-                <CompactTeamCard {...m} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {loadingMembers ? (
+            <LoadingSpinner />
+          ) : errorMembers ? (
+            <div className="text-center py-10 text-red-500 font-medium">{errorMembers}</div>
+          ) : teamMembers.length === 0 ? (
+            <div className="text-center py-10 text-gray-400">No team members found.</div>
+          ) : (
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
+              effect="coverflow"
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView="auto"
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              navigation
+              pagination={{ clickable: true, dynamicBullets: true }}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 4 },
+              }}
+              className="pb-16"
+            >
+              {teamMembers.map((m) => (
+                <SwiperSlide key={m._id} className="!w-72">
+                  <CompactTeamCard
+                    name={m.name}
+                    title={m.title}
+                    image={m.image}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </section>
 

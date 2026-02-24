@@ -224,6 +224,7 @@ export default function Header() {
                 { label: "About", path: "/about" },
                 { label: "Our Team", path: "/ourTeam" },
                 { label: "Products", path: "/products" },
+                 { label: "Journy", path: "/journy" },
                 { label: "Contact", path: "/contact" },
               ].map((item) => (
                 <li key={item.path}>

@@ -42,3 +42,12 @@ export const contactService={
     getAll:()=>api.get("/contact"),
     delete:(id)=>api.delete(`/contact/${id}`)
 }
+
+export const OurteamService = {
+  getAllManagers: () => api.get("/ourteam?type=manager"),
+  getAllMembers: () => api.get("/ourteam?type=member"),
+};
+
+export const Journy ={
+    getAll:()=>api.get("/journy")
+}
