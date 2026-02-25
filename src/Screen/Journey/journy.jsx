@@ -1,186 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Leaf, Sprout, TreePine, Award, Users, Globe, TrendingUp, Star, Rocket, Heart, ChevronDown, ArrowRight } from "lucide-react";
+import { Leaf, Sprout, TreePine, Award, Users, Globe, TrendingUp, Star, Rocket, Heart, ChevronDown, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import Header from "../Header";
 import Footer from "../Footer";
+import { JournyService } from "../../api/service";
 
-const milestones = [
-    {
-        year: "2016",
-        titleHi: "बीज बोया गया",
-        titleEn: "The Seed Was Planted",
-        subtitleHi: "नींव",
-        subtitleEn: "Foundation",
-        descHi: "Samridhi की नींव रखी गई — एक छोटे से सपने के साथ। किसानों को जोड़ना, जैविक खेती को बढ़ावा देना और ग्रामीण भारत को समृद्ध बनाना।",
-        descEn: "Samridhi was born with a small but powerful dream — to connect farmers, promote organic farming, and bring prosperity to rural India.",
-        icon: Sprout,
-        accent: "#65a30d",
-        bg: "from-lime-50 to-green-50",
-        stat: "1",
-        statUnit: "जिला / District",
-        statLabel: "से शुरुआत • Where It Began",
-        side: "right",
-    },
-    {
-        year: "2017",
-        titleHi: "पहली फसल",
-        titleEn: "First Harvest",
-        subtitleHi: "पहली सफलता",
-        subtitleEn: "First Success",
-        descHi: "पहले 500 किसानों को जोड़ा गया। जैविक उत्पादों की पहली खेप बाजार में पहुंची।",
-        descEn: "The first 500 farmers were onboarded. Organic products reached the market for the very first time. Their smiles were our biggest reward.",
-        icon: Leaf,
-        accent: "#16a34a",
-        bg: "from-green-50 to-emerald-50",
-        stat: "500+",
-        statUnit: "किसान / Farmers",
-        statLabel: "जुड़े • Joined",
-        side: "left",
-    },
-    {
-        year: "2018",
-        titleHi: "जड़ें मजबूत हुईं",
-        titleEn: "Roots Strengthened",
-        subtitleHi: "विस्तार",
-        subtitleEn: "Expansion",
-        descHi: "मध्यप्रदेश के 5 जिलों में विस्तार। Research & Development टीम की स्थापना।",
-        descEn: "Expanded to 5 districts of Madhya Pradesh. R&D team established. Farmers introduced to modern agricultural techniques.",
-        icon: TreePine,
-        accent: "#059669",
-        bg: "from-emerald-50 to-teal-50",
-        stat: "5",
-        statUnit: "जिले / Districts",
-        statLabel: "में विस्तार • Expanded",
-        side: "right",
-    },
-    {
-        year: "2019",
-        titleHi: "पहचान मिली",
-        titleEn: "Recognition Earned",
-        subtitleHi: "पुरस्कार",
-        subtitleEn: "Award",
-        descHi: "राज्य स्तरीय कृषि पुरस्कार प्राप्त। 2000+ किसान परिवारों की आय में 30% की वृद्धि।",
-        descEn: "Won State-level Agriculture Award. Income of 2000+ farmer families grew by 30%. Samridhi brand established across Madhya Pradesh.",
-        icon: Award,
-        accent: "#0d9488",
-        bg: "from-teal-50 to-cyan-50",
-        stat: "30%",
-        statUnit: "आय वृद्धि / Growth",
-        statLabel: "किसानों की आय में • In Farmer Income",
-        side: "left",
-    },
-    {
-        year: "2020",
-        titleHi: "चुनौती और संकल्प",
-        titleEn: "Challenge & Resolve",
-        subtitleHi: "दृढ़ता",
-        subtitleEn: "Resilience",
-        descHi: "COVID-19 के बावजूद Samridhi ने किसानों का साथ नहीं छोड़ा। डिजिटल प्लेटफॉर्म लॉन्च किया।",
-        descEn: "Despite COVID-19, Samridhi stood by every farmer. A digital platform launched to deliver seeds and expert advice to doorsteps.",
-        icon: Heart,
-        accent: "#0891b2",
-        bg: "from-cyan-50 to-sky-50",
-        stat: "100%",
-        statUnit: "प्रतिबद्धता / Commitment",
-        statLabel: "सेवा जारी रही • Service Continued",
-        side: "right",
-    },
-    {
-        year: "2021",
-        titleHi: "नई ऊंचाइयां",
-        titleEn: "New Heights",
-        subtitleHi: "विकास",
-        subtitleEn: "Growth",
-        descHi: "10,000+ किसान परिवार जुड़े। देशी बीजों का संरक्षण अभियान शुरू। महिला किसानों के लिए विशेष प्रशिक्षण।",
-        descEn: "10,000+ farmer families joined. Native seed conservation drive launched. Special training programs started for women farmers.",
-        icon: TrendingUp,
-        accent: "#2563eb",
-        bg: "from-blue-50 to-indigo-50",
-        stat: "10K+",
-        statUnit: "परिवार / Families",
-        statLabel: "किसान परिवार • Farmer Families",
-        side: "left",
-    },
-    {
-        year: "2022",
-        titleHi: "राष्ट्रीय पहचान",
-        titleEn: "National Recognition",
-        subtitleHi: "राष्ट्रीय स्तर",
-        subtitleEn: "National Level",
-        descHi: "राष्ट्रीय Best Agri-Startup Award। 15 जिलों में नेटवर्क। Export शुरू — भारतीय जैविक उत्पाद विदेश पहुंचे।",
-        descEn: "Won National Best Agri-Startup Award. Network expanded to 15 districts. Exports began — Indian organic products reached global markets.",
-        icon: Globe,
-        accent: "#7c3aed",
-        bg: "from-violet-50 to-purple-50",
-        stat: "15",
-        statUnit: "जिले / Districts",
-        statLabel: "नेटवर्क • Network Spread",
-        side: "right",
-    },
-    {
-        year: "2023",
-        titleHi: "टीम का विस्तार",
-        titleEn: "Team Expansion",
-        subtitleHi: "लोग",
-        subtitleEn: "People",
-        descHi: "50+ कर्मचारी। Regional Sales Managers की नियुक्ति। किसानों को 24/7 सहायता।",
-        descEn: "50+ employees onboarded. Regional Sales Managers in every district. 24/7 farmer support made available across all regions.",
-        icon: Users,
-        accent: "#9333ea",
-        bg: "from-purple-50 to-fuchsia-50",
-        stat: "50+",
-        statUnit: "सदस्य / Members",
-        statLabel: "टीम सदस्य • Team Members",
-        side: "left",
-    },
-    {
-        year: "2024",
-        titleHi: "तकनीक से जोड़ा",
-        titleEn: "Tech Integration",
-        subtitleHi: "डिजिटल",
-        subtitleEn: "Digital",
-        descHi: "Samridhi App लॉन्च। AI-based फसल सलाह। किसान सीधे ग्राहक से जुड़े। 25,000+ active users।",
-        descEn: "Samridhi App launched with AI-based crop advisory. Farmers connected directly with customers via online marketplace. 25,000+ active users.",
-        icon: Star,
-        accent: "#c026d3",
-        bg: "from-fuchsia-50 to-pink-50",
-        stat: "25K+",
-        statUnit: "Users / उपयोगकर्ता",
-        statLabel: "Active • सक्रिय",
-        side: "right",
-    },
-    {
-        year: "2025",
-        titleHi: "समृद्धि की ओर",
-        titleEn: "Towards Prosperity",
-        subtitleHi: "प्रभाव",
-        subtitleEn: "Impact",
-        descHi: "50,000+ किसान परिवारों की जिंदगी बदली। मध्यप्रदेश का सबसे बड़ा Agri-Network। अंतरराष्ट्रीय बाजार में धमक।",
-        descEn: "50,000+ farmer families transformed. Madhya Pradesh's largest Agri-Network. Samridhi makes its mark in international markets.",
-        icon: Rocket,
-        accent: "#e11d48",
-        bg: "from-rose-50 to-red-50",
-        stat: "50K+",
-        statUnit: "परिवार / Families",
-        statLabel: "समृद्ध • Prospered",
-        side: "left",
-    },
-    {
-        year: "2026",
-        titleHi: "नया अध्याय",
-        titleEn: "A New Chapter",
-        subtitleHi: "10 साल की यात्रा",
-        subtitleEn: "A Decade of Dreams",
-        descHi: "10 साल की यात्रा पूरी। अब लक्ष्य — पूरे भारत के किसानों तक पहुंचना। Samridhi 2.0 के साथ नई क्रांति।",
-        descEn: "A decade of dedication complete. The goal now — to reach every farmer across India. Samridhi 2.0 begins a new revolution.",
-        icon: Leaf,
-        accent: "#16a34a",
-        bg: "from-green-50 to-lime-50",
-        stat: "10",
-        statUnit: "साल / Years",
-        statLabel: "की समृद्ध यात्रा • Of Rich Journey",
-        side: "right",
-    },
-];
+// Icon map to resolve icon names from API to Lucide components
+const iconMap = {
+    Leaf, Sprout, TreePine, Award, Users, Globe, TrendingUp, Star, Rocket, Heart,
+};
 
 // ─── HOOK ──────────────────────────────────────────────────────────────────
 const useInView = (threshold = 0.15) => {
@@ -201,7 +28,12 @@ const useInView = (threshold = 0.15) => {
 const MilestoneCard = ({ milestone, index }) => {
     const [ref, inView] = useInView(0.12);
     const [hovered, setHovered] = useState(false);
-    const Icon = milestone.icon;
+
+    // Support icon as string (from API) or as component (fallback)
+    const Icon = typeof milestone.icon === "string"
+        ? (iconMap[milestone.icon] || Leaf)
+        : (milestone.icon || Leaf);
+
     const isRight = milestone.side === "right";
 
     return (
@@ -293,9 +125,7 @@ const MilestoneCard = ({ milestone, index }) => {
                     </div>
 
                     {/* Description — bilingual */}
-                    <div style={{
-                        fontSize: "13px", lineHeight: "1.7", marginBottom: "18px",
-                    }}>
+                    <div style={{ fontSize: "13px", lineHeight: "1.7", marginBottom: "18px" }}>
                         <p style={{ color: "#374151", marginBottom: "6px" }}>{milestone.descHi}</p>
                         <p style={{ color: "#9ca3af", fontStyle: "italic" }}>{milestone.descEn}</p>
                     </div>
@@ -362,12 +192,71 @@ const HeroStat = ({ val, label, delay }) => {
     );
 };
 
+// ─── LOADING STATE ─────────────────────────────────────────────────────────
+const LoadingState = () => (
+    <div style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        justifyContent: "center", padding: "100px 20px", gap: "16px",
+    }}>
+        <Loader2 size={40} color="#16a34a" style={{ animation: "spin 1s linear infinite" }} />
+        <p style={{ color: "#6b7280", fontSize: "16px", fontWeight: 500 }}>यात्रा लोड हो रही है... / Loading Journey...</p>
+        <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+    </div>
+);
+
+// ─── ERROR STATE ───────────────────────────────────────────────────────────
+const ErrorState = ({ message, onRetry }) => (
+    <div style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        justifyContent: "center", padding: "100px 20px", gap: "16px",
+    }}>
+        <AlertCircle size={40} color="#ef4444" />
+        <p style={{ color: "#374151", fontSize: "16px", fontWeight: 600 }}>कुछ गलत हुआ / Something went wrong</p>
+        <p style={{ color: "#9ca3af", fontSize: "14px", textAlign: "center", maxWidth: "400px" }}>{message}</p>
+        <button
+            onClick={onRetry}
+            style={{
+                padding: "10px 24px", borderRadius: "999px",
+                background: "linear-gradient(135deg, #16a34a, #059669)",
+                color: "white", fontWeight: 700, fontSize: "14px",
+                border: "none", cursor: "pointer",
+            }}
+        >
+            पुनः प्रयास करें / Retry
+        </button>
+    </div>
+);
+
 // ─── MAIN COMPONENT ────────────────────────────────────────────────────────
 export default function Journey() {
     const [heroRef, heroInView] = useInView(0.1);
-    const [activeFilter, setActiveFilter] = useState("all");
 
-    const filtered = activeFilter === "all" ? milestones : milestones.filter(m => parseInt(m.year) >= parseInt(activeFilter));
+    // ── API State ──
+    const [milestones, setMilestones] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchMilestones = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const response = await JournyService.getAll();
+            // API returns { success, count, data: [...] }
+            const raw = response?.data?.data ?? response?.data ?? response;
+            const data = Array.isArray(raw) ? raw : [];
+            // Sort chronologically: 2016, 2017, 2018...
+            const sorted = [...data].sort((a, b) => parseInt(a.year) - parseInt(b.year));
+            setMilestones(sorted);
+        } catch (err) {
+            setError(err?.response?.data?.message || err?.message || "Failed to load journey data.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchMilestones();
+    }, []);
 
     return (
         <>
@@ -555,40 +444,46 @@ export default function Journey() {
                             </p>
                         </div>
 
-                        {/* Filter Tabs */}
-                        <div style={{
-                            display: "flex", justifyContent: "center",
-                            gap: "8px", flexWrap: "wrap", marginBottom: "56px",
-                        }}>
+                        {/* Timeline Content */}
+                        {loading ? (
+                            <LoadingState />
+                        ) : error ? (
+                            <ErrorState message={error} onRetry={fetchMilestones} />
+                        ) : milestones.length === 0 ? (
+                            <div style={{ textAlign: "center", padding: "60px 20px", color: "#9ca3af" }}>
+                                <Sprout size={40} color="#d1fae5" style={{ margin: "0 auto 16px", display: "block" }} />
+                                <p style={{ fontSize: "16px" }}>कोई डेटा नहीं मिला / No journey data found.</p>
+                            </div>
+                        ) : (
+                            <div style={{ position: "relative" }}>
+                                {/* Timeline Line */}
+                                <div style={{
+                                    position: "absolute", left: "50%", top: 0, bottom: 0,
+                                    width: "2px", transform: "translateX(-50%)",
+                                    background: "linear-gradient(to bottom, #d1fae5, #6ee7b7, #a7f3d0, #d1fae5)",
+                                }} className="hidden md:block" />
 
-                        </div>
-
-                        {/* Timeline Line */}
-                        <div style={{ position: "relative" }}>
-                            <div style={{
-                                position: "absolute", left: "50%", top: 0, bottom: 0,
-                                width: "2px", transform: "translateX(-50%)",
-                                background: "linear-gradient(to bottom, #d1fae5, #6ee7b7, #a7f3d0, #d1fae5)",
-                            }} className="hidden md:block" />
-
-                            {filtered.map((m, i) => (
-                                <MilestoneCard key={m.year} milestone={m} index={i} />
-                            ))}
-                        </div>
+                                {milestones.map((m, i) => (
+                                    <MilestoneCard key={m._id || m.year} milestone={m} index={i} />
+                                ))}
+                            </div>
+                        )}
 
                         {/* End cap */}
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "40px", gap: "12px" }}>
-                            <div style={{
-                                width: "68px", height: "68px", borderRadius: "50%",
-                                background: "linear-gradient(135deg, #16a34a, #059669)",
-                                display: "flex", alignItems: "center", justifyContent: "center",
-                                boxShadow: "0 0 0 8px #d1fae5, 0 12px 32px rgba(22,163,74,0.3)",
-                            }}>
-                                <Leaf size={28} color="white" />
+                        {!loading && !error && milestones.length > 0 && (
+                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "40px", gap: "12px" }}>
+                                <div style={{
+                                    width: "68px", height: "68px", borderRadius: "50%",
+                                    background: "linear-gradient(135deg, #16a34a, #059669)",
+                                    display: "flex", alignItems: "center", justifyContent: "center",
+                                    boxShadow: "0 0 0 8px #d1fae5, 0 12px 32px rgba(22,163,74,0.3)",
+                                }}>
+                                    <Leaf size={28} color="white" />
+                                </div>
+                                <p style={{ color: "#16a34a", fontWeight: 800, fontSize: "18px" }}>यात्रा जारी है...</p>
+                                <p style={{ color: "#9ca3af", fontSize: "14px", fontStyle: "italic" }}>The Journey Continues</p>
                             </div>
-                            <p style={{ color: "#16a34a", fontWeight: 800, fontSize: "18px" }}>यात्रा जारी है...</p>
-                            <p style={{ color: "#9ca3af", fontSize: "14px", fontStyle: "italic" }}>The Journey Continues</p>
-                        </div>
+                        )}
                     </div>
                 </section>
 
@@ -643,52 +538,11 @@ export default function Journey() {
                         <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "13px", marginBottom: "8px", letterSpacing: "0.05em" }}>
                             The road ahead is even brighter
                         </p>
-
-                        <p style={{
-                            color: "#86efac", fontSize: "16px",
-                            maxWidth: "500px", margin: "0 auto 36px",
-                            lineHeight: 1.8,
-                        }}>
-                            10 साल की यात्रा एक प्रेरणा है। अगले 10 साल में हम और लाखों किसानों तक पहुंचेंगे।
-                            <br />
-                            <span style={{ color: "#6ee7b7", fontSize: "14px", fontStyle: "italic" }}>
-                                A decade of inspiration. The next decade — millions more.
-                            </span>
-                        </p>
-
-                        <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
-                            <button style={{
-                                display: "inline-flex", alignItems: "center", gap: "8px",
-                                padding: "14px 32px", borderRadius: "999px",
-                                background: "#a3e635", color: "#052e16",
-                                fontWeight: 800, fontSize: "14px", letterSpacing: "0.05em",
-                                border: "none", cursor: "pointer",
-                                boxShadow: "0 8px 32px rgba(163,230,53,0.4)",
-                                transition: "all 0.3s ease",
-                            }}
-                                onMouseEnter={e => { e.target.style.transform = "scale(1.05)"; e.target.style.boxShadow = "0 12px 40px rgba(163,230,53,0.5)"; }}
-                                onMouseLeave={e => { e.target.style.transform = "scale(1)"; e.target.style.boxShadow = "0 8px 32px rgba(163,230,53,0.4)"; }}
-                            >
-                                हमसे जुड़ें <ArrowRight size={16} />
-                            </button>
-                            <button style={{
-                                padding: "14px 32px", borderRadius: "999px",
-                                background: "rgba(255,255,255,0.08)",
-                                color: "white", fontWeight: 700, fontSize: "14px",
-                                border: "2px solid rgba(255,255,255,0.2)",
-                                cursor: "pointer", letterSpacing: "0.05em",
-                                backdropFilter: "blur(10px)",
-                                transition: "all 0.3s ease",
-                            }}
-                                onMouseEnter={e => { e.target.style.background = "rgba(255,255,255,0.15)"; }}
-                                onMouseLeave={e => { e.target.style.background = "rgba(255,255,255,0.08)"; }}
-                            >
-                                हमारी टीम देखें • Meet Our Team
-                            </button>
-                        </div>
                     </div>
                 </section>
+
             </div>
+
             <Footer />
         </>
     );

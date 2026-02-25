@@ -48,6 +48,6 @@ export const OurteamService = {
   getAllMembers: () => api.get("/ourteam?type=member"),
 };
 
-export const Journy ={
+export const JournyService ={
     getAll:()=>api.get("/journy")
 }
